@@ -45,8 +45,11 @@ public class Word {
 	}
 	
 	@Override
+//	public String toString() {
+//		return originalWord + " Sorted Word = "+abcWord;
+//	}
 	public String toString() {
-		return originalWord + " Sorted Word = "+abcWord;
+		return originalWord;
 	}
 
 }

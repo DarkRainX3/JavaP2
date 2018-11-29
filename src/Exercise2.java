@@ -11,7 +11,7 @@ public class Exercise2 {
 	private static ArrayList list = new ArrayList();
 	
 	private static void readFile(String filename) throws IOException {
-		File file = new File("words.txt"); 
+		File file = new File(filename); 
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line;
 		String words = "";
@@ -54,10 +54,12 @@ public class Exercise2 {
 	}
 	public static void main(String args[]) throws Exception{
 		
-		readFile("words.txt");
+		readFile("morewords.txt");
 		insertArray();
-		list.printElements();
+//		list.printElements();
 		list.sortEachElement();
+		//list.printElements();
+		list.sortArray();
 		list.printElements();
 		
 	}
