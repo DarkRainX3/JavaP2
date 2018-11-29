@@ -1,9 +1,18 @@
 
 public class WordLinkedList {
 	private Word head;
+	private Word sorted;
 	
 	public WordLinkedList() {
 		head = null;
+	}
+	
+	public WordLinkedList(Word word) {
+		head = word;
+	}
+	
+	public Word getHead() {
+		return head;
 	}
 	
 	public void insertToEndOfList (Word s){
@@ -16,34 +25,6 @@ public class WordLinkedList {
 			cursor = cursor.getNext();
 		cursor.setNext(s);
 	}
-//	public void insertInOrder (Word s){
-//		if (head==null) {
-//			head = s;
-//			return;
-//		}
-//		if (search(s.getId())!=null)
-//			return;
-//		Student current = head, prev = head;
-//		while (current!=null) {
-//			if (current.getId()<s.getId()) {
-//				prev=current;
-//				current=current.getNext();
-//				if(current==null) {
-//					prev.setNext(s);// not using insertToEndOfList method here since it would be simpler to just do prev.setnext
-//					return;
-//				}
-//			}
-//			else if(current == head) {
-//				insertToFrontOfList(s);
-//				return;
-//				}
-//			else {
-//				s.setNext(current);
-//				prev.setNext(s);
-//				return;
-//			}
-//		}
-//	}
 	
 	public void printLinkedList (){
 		Word cursor = head;
@@ -54,6 +35,59 @@ public class WordLinkedList {
 			cursor=cursor.getNext();
 		}
 	}
+	
+	void insertionSort() {  //Code supplied by geeksforgeeks 
+        // Initialize sorted linked list 
+        sorted = null; 
+        Word current = head; 
+        // Traverse the given linked list and insert every 
+        // node to sorted 
+        while (current != null)  
+        { 
+            // Store next for next iteration 
+            Word next = current.getNext(); 
+            // insert current in sorted linked list 
+            sortedInsert(current); 
+            // Update current 
+            current = next; 
+        } 
+        // Update head_ref to point to sorted linked list 
+        head = sorted; 
+    }
+	
+	void sortedInsert(Word newnode) { 
+        /* Special case for the head end */
+        if (sorted == null || sorted.getOriginalWord().compareToIgnoreCase(newnode.getOriginalWord()) >= 0)  
+        { 
+            newnode.setNext(sorted); 
+            sorted = newnode; 
+        } 
+        else 
+        { 
+            Word current = sorted; 
+            /* Locate the node before the point of insertion */
+            while (current.getNext() != null && current.getNext().getOriginalWord().compareToIgnoreCase(newnode.getOriginalWord()) < 0)  
+            { 
+                current = current.getNext(); 
+            } 
+            newnode.setNext(current.getNext()); 
+            current.setNext(newnode); 
+        } 
+    } 
+	
+	@Override
+	public String toString() {
+		Word cursor = head;
+		String temp = "";
+		if (head==null)
+			return "";
+		while (cursor!=null) {
+			temp += cursor.toString()+", ";
+			cursor=cursor.getNext();
+		}
+		return temp;
+	}
+	
 	public static void main(String args[]) {
 		WordLinkedList list = new WordLinkedList();
 		list.insertToEndOfList(new Word("happy"));

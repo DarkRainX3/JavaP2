@@ -6,3 +6,11 @@ god
 pots
 arc
 tops
+zoo
+post
+deb
+acdb
+adbc
+abcd
+abdc
+dcab
