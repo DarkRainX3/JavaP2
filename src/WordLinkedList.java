@@ -82,7 +82,7 @@ public class WordLinkedList {
 		if (head==null)
 			return "";
 		while (cursor!=null) {
-			temp += cursor.toString()+", ";
+			temp += cursor.toString()+" ";
 			cursor=cursor.getNext();
 		}
 		return temp;
